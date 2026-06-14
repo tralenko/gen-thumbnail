@@ -1,0 +1,62 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center; /* по горизонтали */
+  align-items: center;     /* по вертикали */
+}
+
+.logo {
+  text-align: center;
+  z-index: 100;
+}
+
+.logo-txt {
+  width: 80px;
+  height: 42px;
+
+  background-color: rgb(36, 71, 174);
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+
+  border-radius: 4px;
+}
+
+.confetti {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.typewriter {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: monospace;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.cursor {
+  display: inline-block;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
