@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const logo = document.getElementById('logo');
-
   const typeText = document.getElementById("typeText");
 
   const text = "THE SITE WILL BE AVAILABLE SOON";
@@ -17,21 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   function spawnConfetti() {
-
     const rect = logo.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
+    
+    // Центр логотипа с учетом текущей прокрутки страницы
+    const originX = rect.left + window.scrollX + rect.width / 2;
+    const originY = rect.top + window.scrollY + rect.height / 2;
 
     const count = 120;
 
     for (let i = 0; i < count; i++) {
-
       const el = document.createElement('div');
       el.classList.add('confetti');
 
-      el.style.background =
-        colors[Math.floor(Math.random() * colors.length)];
-
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
       el.style.left = originX + 'px';
       el.style.top = originY + 'px';
 
@@ -51,8 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.style.width = size + 'px';
       el.style.height = size + 'px';
 
-      el.style.borderRadius =
-        Math.random() > 0.5 ? '50%' : '3px';
+      el.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
 
       document.body.appendChild(el);
 
@@ -64,10 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         x += vx;
         y += vy;
 
-        el.style.transform =
-          `translate(${x - originX}px, ${y - originY}px) rotate(${x + y}deg)`;
+        el.style.transform = `translate(${x - originX}px, ${y - originY}px) rotate(${x + y}deg)`;
 
-        if (y > window.innerHeight + 120) {
+        if (y > window.innerHeight + window.scrollY + 120) {
           el.remove();
         } else {
           requestAnimationFrame(animate);
@@ -84,14 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
       i++;
       setTimeout(typeWriter, 80);
     } else {
-      // 💥 ВАЖНО: конфетти запускаются ТОЛЬКО ПОСЛЕ печати
       spawnConfetti();
     }
   }
 
-  // старт через 2 секунды
   setTimeout(() => {
     typeWriter();
-  }, 1000);
+  }, 2000);
+
+  logo.style.cursor = 'pointer'; 
+  logo.addEventListener('click', spawnConfetti);
 
 });
