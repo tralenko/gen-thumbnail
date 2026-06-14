@@ -5,13 +5,17 @@ html, body {
 
 body {
   display: flex;
-  justify-content: center; /* по горизонтали */
-  align-items: center;     /* по вертикали */
+  justify-content: center; 
+  align-items: center;    
+  -webkit-user-select: none; 
+  -ms-user-select: none;     
+  user-select: none; 
 }
 
 .logo {
   text-align: center;
   z-index: 100;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .logo-txt {
